@@ -12,7 +12,8 @@ import io.restassured.config.Config;
 import io.restassured.response.Response;
 
 
-
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -24,20 +25,29 @@ public class MyStepClean {
     RequestInformation requestInformation = new RequestInformation();
     Map<String,String> dynamicVar= new HashMap<>();
 
-    @Given("yo uso la authenticacion basica")
-    public void yoUsoLaAuthenticacionBasica() {
+    @Given("yo uso la authenticacion {}")
+    public void yoUsoLaAuthenticacionBasica(String type) {
+        String authBasic = "Basic "+ Base64.getEncoder().encodeToString((Configuration.user+":"+Configuration.pwd).getBytes(StandardCharsets.UTF_8));
+
+        if (type.equals("basica")){
+            requestInformation.setHeaders("Authorization",authBasic);
+        }
+        else{
+            RequestInformation tokenRequest = new RequestInformation();
+            tokenRequest.setUrl(Configuration.host+"/api/authentication/token.json");
+            tokenRequest.setHeaders("","");
+            response = FactoryRequest.make("get").send(tokenRequest);
+            String token = response.then().extract().path("TokenString");
+            requestInformation.setHeaders("Token","");
+        }
     }
+
 
     @When("envio {} request a la {} con el body")
     public void envioPOSTRequestALaApiProjectsJsonConElBody(String method,String url,String body) {
-        /*requestInformation.setUrl(Configuration.host+replaceVar(url)).setBody(replaceVar(body));
-        response= FactoryRequest.make(method).send(requestInformation);*/
-
-        requestInformation.setAuthType(Configuration.AUTH_BASIC);
-        requestInformation.setAuthValue(Configuration.AUTH_BASIC_VALUE);
-        requestInformation.setUrl(replaceVar(url));
-        requestInformation.setBody(replaceVar(body));
-        response = FactoryRequest.make(method).send(requestInformation);
+        requestInformation.setUrl(Configuration.host+replaceVar(url))
+                .setBody(replaceVar(body));
+        response= FactoryRequest.make(method).send(requestInformation);
     }
 
     @Then("el codigo de respuesta deberia ser {int}")
@@ -68,4 +78,6 @@ public class MyStepClean {
         }
         return value;
     }
+
+
 }

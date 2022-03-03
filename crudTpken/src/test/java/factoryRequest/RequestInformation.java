@@ -1,12 +1,16 @@
 package factoryRequest;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class RequestInformation {
     private String url;
     private String body;
-    private String authType;
-    private String authValue;
+    private Map<String, String> headers;
 
-    public RequestInformation(){}
+    public RequestInformation(){
+        headers = new HashMap<>();
+    }
 
     public String getUrl() {
         return url;
@@ -26,19 +30,12 @@ public class RequestInformation {
         return this;
     }
 
-    public String getAuthType() {
-        return authType;
+    public Map<String, String> getHeaders(){
+        return headers;
     }
 
-    public void setAuthType(String authType) {
-        this.authType = authType;
-    }
-
-    public String getAuthValue() {
-        return authValue;
-    }
-
-    public void setAuthValue(String authValue) {
-        this.authValue = authValue;
+    public RequestInformation setHeaders(String attribute, String value) {
+        this.headers.put(attribute, value);
+        return this;
     }
 }

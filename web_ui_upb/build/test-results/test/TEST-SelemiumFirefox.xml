@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="SelemiumFirefox" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-03-03T20:35:00" hostname="MSI" time="14.44">
+  <properties/>
+  <testcase name="goToGoogle()" classname="SelemiumFirefox" time="14.44"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+1646339701279	geckodriver	INFO	Listening on 127.0.0.1:62604
+1646339701548	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "65124" "-no-remote" "-profile" "C:\\Users\\pao_a\\AppData\\Local\\Temp\\rust_mozprofileB9qiQN"
+1646339701923	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\pao_a\\AppData\\Local\\Temp\\rust_mozprofileB9qiQN\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:65124/devtools/browser/68e34122-cb87-4f3d-9dcd-734a59d77b6b
+1646339703898	Marionette	INFO	Listening on port 61520
+1646339704235	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+Mar 03, 2022 4:35:04 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+1646339714545	Marionette	INFO	Stopped listening on port 61520
+[Parent 23488, IPC I/O Parent] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc:167
+[Parent 23488, IPC I/O Parent] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc:167
+
+###!!! [Parent][PGPUParent] Error: RunMessage(msgname=PGPU::Msg_ShutdownVR) Channel closing: too late to send/recv, messages will be lost
+
+]]></system-err>
+</testsuite>

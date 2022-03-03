@@ -10,8 +10,7 @@ public class RequestDELETE implements IRequest {
     public Response send(RequestInformation requestInformation) {
 
        Response response= given()
-                            .header(requestInformation.getAuthType(), requestInformation.getAuthValue())
-                            .contentType(ContentType.JSON)
+                            .headers(requestInformation.getHeaders())
                             .log().all()
                           .when()
                             .delete(requestInformation.getUrl());
