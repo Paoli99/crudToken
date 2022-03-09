@@ -42,7 +42,7 @@ public class UpdateTest extends BaseTodoLy{
         updateProject.editProjectText.clearSetText(projectName+update);
         updateProject.save.click();
 
-        Assertions.assertTrue(Session.getInstance().getDriver().findElement(By.xpath("//li[last()]//td[text()='"+projectName+update+"']")).isDisplayed(),"ERROR no creo el projecto");
+        Assertions.assertTrue(Session.getInstance().getDriver().findElement(By.xpath("//li[last()]//td[text()='"+projectName+update+"']")).isDisplayed(),"ERROR no creo el proyecto");
         Thread.sleep(2000);
 
         //delete
@@ -54,7 +54,7 @@ public class UpdateTest extends BaseTodoLy{
 
         Session.getInstance().getDriver().switchTo().alert().accept();
         String currentName=Session.getInstance().getDriver().findElement(By.id("CurrentProjectTitle")).getText();
-        Assertions.assertTrue(currentName.equals(projectName+update),"ERROR el projecto no se Elimino");
+        Assertions.assertTrue(currentName.equals(projectName+update),"ERROR el proyecto no se Elimino");
         Thread.sleep(1000);
     }
 }
